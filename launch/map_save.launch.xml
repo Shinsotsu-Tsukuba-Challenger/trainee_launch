@@ -1,0 +1,7 @@
+<launch>
+  <arg name="map_dir"      default="$(find-pkg-share trainee_launch)/config/map/"/>
+  <arg name="scripts"      default="$(find-pkg-share trainee_launch)/scripts"/>
+  <arg name="map_name"     default="map"/>
+
+  <executable cmd="bash $(var scripts)/map_save.sh $(var map_dir)$(var map_name)" cwd="/" launch-prefix="" output="screen"/>
+</launch>
