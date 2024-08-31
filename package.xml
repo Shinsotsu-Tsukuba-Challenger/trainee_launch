@@ -9,8 +9,7 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
-  <depend>nav2_lifecycle_manager</depend>
-  <depend>nav2_map_server</depend>
+  <depend>navigation2</depend>
   <depend>slam_toolbox</depend>
 
   <export>
