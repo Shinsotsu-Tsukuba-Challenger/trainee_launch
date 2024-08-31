@@ -13,18 +13,18 @@
     <param name="slam_toolbox_params_file"  value="$(var slam_toolbox_params_file)"/>
   </node>
 
-  <node pkg="nav2_lifecycle_manager" exec="lifecycle_manager" name="lifecycle_manager_slam" output="screen" ros_args="--log-level $(var log_level)">
+  <node pkg="nav2_lifecycle_manager" exec="lifecycle_manager" output="screen" ros_args="--log-level $(var log_level)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="autostart"     value="$(var autostart)"/>
     <param name="node_names"    value="['map_saver']"/>
   </node>
 
-  <node pkg="slam_toolbox" exec="async_slam_toolbox_node" name="slam_toolbox" output="screen" ros_args="--log-level $(var log_level)">
+  <node pkg="slam_toolbox" exec="async_slam_toolbox_node" output="screen" ros_args="--log-level $(var log_level)">
     <param name="use_sim_time"              value="$(var use_sim_time)"/>
     <param name="slam_toolbox_params_file"  value="$(var slam_toolbox_params_file)"/>
   </node>
 
   <group if="$(var use_rviz)">
-    <node pkg="rviz2" exec="rviz2" name="rviz2" namespace="" args="-d $(var rviz_config)"/>
+    <node pkg="rviz2" exec="rviz2" namespace="slam" args="-d $(var rviz_config)"/>
   </group>
 </launch>
