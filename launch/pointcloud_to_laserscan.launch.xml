@@ -1,0 +1,19 @@
+<launch>
+  <arg name="use_respawn"             default="false"/>
+  <arg name="lidar_topic"             default="/livox/lidar"/>
+  <arg name="scan_obstacle_topic"     default="/scan_obstacle"/>
+  <arg name="scan_localization_topic" default="/scan_localization"/>
+  <arg name="params_file"             default="$(find-pkg-share trainee_launch)/config/param/pointcloud_to_laserscan.param.yaml"/>
+
+  <node pkg="pointcloud_to_laserscan" exec="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_object_detection" output="screen" respawn="$(var use_respawn)">
+    <remap from="cloud_in"  to="$(var lidar_topic)" />
+    <remap from="scan"      to="$(var scan_obstacle_topic)" />
+    <param from="$(var params_file)"/>
+  </node>
+
+  <node pkg="pointcloud_to_laserscan" exec="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_localization" output="screen" respawn="$(var use_respawn)">
+    <remap from="cloud_in"  to="$(var lidar_topic)" />
+    <remap from="scan"      to="$(var scan_localization_topic)" />
+    <param from="$(var params_file)"/>
+  </node>
+</launch>
