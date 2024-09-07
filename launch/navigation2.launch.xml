@@ -8,7 +8,7 @@
   <arg name="log_level"         default="info"/>
   <arg name="map"               default="map_tsukuba_2023"/>
   <arg name="map_path"          default="$(find-pkg-share trainee_launch)/config/map/"/>
-  <arg name="params_file"       default="$(find-pkg-share trainee_launch)/config/param/nav2.param.yaml"/>
+  <arg name="params_file"       default="$(find-pkg-share trainee_launch)/config/param/navigation2.param.yaml"/>
   <arg name ="rviz_config"      default="$(find-pkg-share trainee_launch)/config/rviz/navigation2.rviz"/>
   <arg name="lifecycle_nodes"   default="['map_server', 'amcl', 'controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother']"/>
 
@@ -74,6 +74,6 @@
   </node>
 
   <group if="$(var use_rviz)">
-    <node pkg="rviz2" exec="rviz2" namespace="navigation" args="-d $(var rviz_config)"/>
+    <node pkg="rviz2" exec="rviz2" name="navigation" args="-d $(var rviz_config)"/>
   </group>
 </launch>
