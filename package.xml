@@ -14,6 +14,14 @@
   <depend>pointcloud_to_laserscan</depend>
   <depend>slam_toolbox</depend>
 
+  <exec_depend>trainee_description</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>ros2controlcli</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>odrive_ros2_control</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>
