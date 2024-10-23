@@ -9,9 +9,10 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
+  <depend>joy_linux</depend>
   <depend>navigation2</depend>
-  <depend>slam_toolbox</depend>
   <depend>pointcloud_to_laserscan</depend>
+  <depend>slam_toolbox</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

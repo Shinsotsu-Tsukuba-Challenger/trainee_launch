@@ -1,0 +1,17 @@
+teleop_twist_joy_comfy:
+  ros__parameters:
+    linear_x: 0.5
+    linear_x_max: 1.0
+    
+    angular_z: 0.5
+    angular_z_max: 1.0
+
+    speed_up_down_linear_x: 0.1
+    speed_up_down_scale_linear_x: 1.0
+
+    speed_up_down_angular_z: 0.1
+    speed_up_down_scale_angular_z: 1.0
+
+    publish_twist_stamped: true
+
+    frame_id: "teleop_twist_joy_comfy"
