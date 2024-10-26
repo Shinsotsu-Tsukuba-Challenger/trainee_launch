@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <arg name="param_yaml" default="$(find-pkg-share trainee_launch)/config/logicool_f310.yaml"/>
+  <arg name="param_yaml" default="$(find-pkg-share trainee_launch)/config/param/logicool_f310.yaml"/>
 
   <node pkg="joy_linux" exec="joy_linux_node" output="screen"/>
 
