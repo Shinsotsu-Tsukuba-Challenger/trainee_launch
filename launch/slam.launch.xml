@@ -1,0 +1,11 @@
+<launch>
+  <arg name="rosbag" default="false"/>
+
+  <include file="$(find-pkg-share trainee_launch)/launch/livox_mid-360.launch.xml"/>
+
+  <include file="$(find-pkg-share trainee_launch)/launch/pointcloud_to_laserscan.launch.xml"/>
+
+  <group if="$(var rosbag)">
+    <include file="$(find-pkg-share trainee_launch)/launch/slam_toolbox.launch.xml"/>
+  </group>
+</launch>
