@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="param_yaml" default="$(find-pkg-share trainee_launch)/config/param/logicool_f310.yaml"/>
 
