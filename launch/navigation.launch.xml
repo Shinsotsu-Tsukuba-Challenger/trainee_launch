@@ -1,0 +1,14 @@
+<launch>
+  <arg name="use_composition"   default="false"/>
+  <arg name="map"               default="map"/>
+  <arg name="map_path"          default="$(find-pkg-share trainee_launch)/config/map/$(var map).yaml"/>
+
+  <include file="$(find-pkg-share trainee_launch)/launch/livox_mid-360.launch.xml"/>
+
+  <include file="$(find-pkg-share trainee_launch)/launch/pointcloud_to_laserscan.launch.xml"/>
+
+  <include file="$(find-pkg-share trainee_launch)/launch/nav2.launch.xml">
+    <arg name="map_path"          value="$(var map_path)"/>
+    <arg name="use_composition"   value="$(var use_composition)"/>
+  </include>
+</launch>
