@@ -10,10 +10,10 @@
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <depend>joy_linux</depend>
-  <depend>navigation2</depend>
-  <depend>pointcloud_to_laserscan</depend>
-  <depend>slam_toolbox</depend>
 
+  <exec_depend>navigation2</exec_depend>
+  <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>livox_ros_driver2</exec_depend>
   <exec_depend>trainee_description</exec_depend>
   <exec_depend>controller_manager</exec_depend>
