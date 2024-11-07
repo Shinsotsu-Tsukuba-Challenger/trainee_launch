@@ -6,7 +6,7 @@ amcl:
     alpha3: 1.0
     alpha4: 0.2
     alpha5: 0.2
-    base_frame_id: "base_footprint"
+    base_frame_id: "base_link"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -186,7 +186,7 @@ local_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /scan_obstacle
+          topic: /scan_localization
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -202,7 +202,7 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan_obstacle
+          topic: /scan_localization
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -238,7 +238,7 @@ global_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /scan_obstacle
+          topic: /scan_localization
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -258,7 +258,7 @@ global_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan_obstacle
+          topic: /scan_localization
           max_obstacle_height: 2.0
           clearing: true
           marking: true

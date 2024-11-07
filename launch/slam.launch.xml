@@ -1,9 +1,10 @@
 <launch>
   <arg name="rosbag" default="false"/>
 
-  <include file="$(find-pkg-share trainee_launch)/launch/sensing.launch.xml"/>
+  <include file="$(find-pkg-share trainee_launch)/launch/slam_toolbox.launch.xml"/>
 
-  <group if="$(var rosbag)">
-    <include file="$(find-pkg-share trainee_launch)/launch/slam_toolbox.launch.xml"/>
+  <group unless="$(var rosbag)">
+    <include file="$(find-pkg-share trainee_launch)/launch/sensing.launch.xml"/>
   </group>
+
 </launch>
