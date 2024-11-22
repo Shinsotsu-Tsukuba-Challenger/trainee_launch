@@ -9,4 +9,7 @@
   </include>
 
   <include file="$(find-pkg-share trainee_launch)/launch/sensing.launch.xml"/>
+
+  <node pkg="topic_tools" exec="relay_field" output="screen" 
+    args="--wait-for-start /cmd_vel /trainee/cmd_vel geometry_msgs/TwistStamped '{twist:{linear: {x: m.linear.x}, angular: {z: m.angular.z}}}'"/>
 </launch>
