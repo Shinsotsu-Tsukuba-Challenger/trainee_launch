@@ -1,6 +1,6 @@
 pointcloud_to_laserscan_object_detection:
   ros__parameters:
-    target_frame: base_link
+    target_frame: laserscan_object_detection_frame
     transform_tolerance: 0.1
     min_height: 0.1
     max_height: 0.3
@@ -15,7 +15,7 @@ pointcloud_to_laserscan_object_detection:
 
 pointcloud_to_laserscan_localization:
   ros__parameters:
-    target_frame: livox_frame
+    target_frame: laserscan_localization_frame
     transform_tolerance: 0.1
     min_height: -0.2
     max_height: 0.2
