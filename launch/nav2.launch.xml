@@ -8,9 +8,11 @@
   <arg name="log_level"         default="info"/>
   <arg name="map"               default="map"/>
   <arg name="map_path"          default="$(find-pkg-share trainee_launch)/config/map/$(var map).yaml"/>
+  <arg name="keepout_map"       default="keepout_map"/>
+  <arg name="keepout_map_path"  default="$(find-pkg-share trainee_launch)/config/map/$(var keepout_map).yaml"/>
   <arg name="params_file"       default="$(find-pkg-share trainee_launch)/config/param/navigation2.param.yaml"/>
   <arg name ="rviz_config"      default="$(find-pkg-share trainee_launch)/config/rviz/navigation2.rviz"/>
-  <arg name="lifecycle_nodes"   default="['map_server', 'amcl', 'controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother']"/>
+  <arg name="lifecycle_nodes"   default="['map_server', 'filter_mask_server','costmap_filter_info_server'  , 'amcl', 'controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother']"/>
 
   <node pkg="nav2_map_server" exec="map_server" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
@@ -18,7 +20,18 @@
     <param from="$(var params_file)"/>
     <param name="yaml_filename" value="$(var map_path)"/>
   </node>
-
+  <node pkg="nav2_map_server" exec="map_server" name="filter_mask_server" output="screen" respawn="$(var use_respawn)">
+    <param name="use_sim_time"  value="$(var use_sim_time)"/>
+    <param name="log_level"     value="$(var log_level)"/>
+    <param from="$(var params_file)"/>
+    <param name="yaml_filename" value="$(var keepout_map_path)"/>
+  </node>
+  <node pkg="nav2_map_server" exec="costmap_filter_info_server" name="costmap_filter_info_server" output="screen" respawn="$(var use_respawn)">
+    <param name="use_sim_time"  value="$(var use_sim_time)"/>
+    <param name="log_level"     value="$(var log_level)"/>
+    <param from="$(var params_file)"/>
+    <param name="yaml_filename" value="$(var keepout_map_path)"/>
+  </node>
   <node pkg="nav2_amcl" exec="amcl" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="log_level"     value="$(var log_level)"/>
