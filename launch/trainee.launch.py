@@ -1,5 +1,6 @@
+import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, RegisterEventHandler
+from launch.actions import ExecuteProcess, DeclareLaunchArgument, RegisterEventHandler
 from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
@@ -7,6 +8,7 @@ from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
+from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
 
@@ -31,6 +33,19 @@ def generate_launch_description():
         ]
     )
 
+    speak_list = os.path.join(
+        get_package_share_directory('trainee_speak'), 'config', 'speak_list.param.yaml')
+    voice_config = os.path.join(
+        get_package_share_directory('trainee_speak'), 'config', 'voice_config.param.yaml')
+
+    speak_node  = Node(
+        name='trainee_speak',
+        package='trainee_speak',
+        executable='trainee_speak_node',
+        arguments=[speak_list],
+        parameters=[voice_config],
+        output='screen'
+    )
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -69,11 +84,21 @@ def generate_launch_description():
         )
     )
 
+    exec_speak = ExecuteProcess(
+        cmd=[
+                'ros2', 'topic', 'pub', '--once', '/speak', 'std_msgs/String',
+                "data: 'トレーニーが起動しました'"
+        ],
+        output='screen'
+    )
+
     nodes = [
+        speak_node,
         control_node,
         robot_state_pub_node,
         joint_state_broadcaster_spawner,
         delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
+        exec_speak,
     ]
 
     return LaunchDescription(declared_arguments + nodes)
