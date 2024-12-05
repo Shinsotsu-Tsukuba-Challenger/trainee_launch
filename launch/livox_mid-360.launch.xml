@@ -1,9 +1,9 @@
 <launch>
   <arg name="config_path" default="$(find-pkg-share trainee_launch)/config/param/MID360_config.json"/>
-  <arg name="param_yaml" default="$(find-pkg-share trainee_launch)/config/param/livox_mid-360.param.yaml"/>
+  <arg name="params_file" default="$(find-pkg-share trainee_launch)/config/param/livox_mid-360.param.yaml"/>
 
   <node pkg="livox_ros_driver2" exec="livox_ros_driver2_node" output="screen">
     <param name="user_config_path" value="$(var config_path)"/>
-    <param from="$(var param_yaml)"/>
+    <param from="$(var params_file)"/>
   </node>
 </launch>
