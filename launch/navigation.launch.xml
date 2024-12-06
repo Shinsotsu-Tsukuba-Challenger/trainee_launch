@@ -19,4 +19,6 @@
 
   <node pkg="topic_tools" exec="relay_field" output="screen" 
     args="--wait-for-start /cmd_vel /trainee/cmd_vel geometry_msgs/TwistStamped '{twist:{linear: {x: m.linear.x}, angular: {z: m.angular.z}}}'"/>
+
+  <executable cmd="ros2 topic pub --once /speak std_msgs/String '{data: &quot;ナビゲーションが立ち上がりました&quot;}'" output="screen" />
 </launch>
