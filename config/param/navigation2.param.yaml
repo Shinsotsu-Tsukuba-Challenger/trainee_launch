@@ -202,7 +202,7 @@ local_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /scan_localization
+          topic: /scan_obstacle
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -218,7 +218,7 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan_localization
+          topic: /scan_obstacle
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -260,7 +260,7 @@ global_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /scan_localization
+          topic: /scan_obstacle
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -280,7 +280,7 @@ global_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /scan_localization
+          topic: /scan_obstacle
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -353,3 +353,51 @@ waypoint_follower:
       plugin: "nav2_waypoint_follower::WaitAtWaypoint"
       enabled: true
       waypoint_pause_duration: 200
+
+collision_monitor:
+  ros__parameters:
+    use_sim_time: False
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    cmd_vel_in_topic: "cmd_vel_smoothed"
+    cmd_vel_out_topic: "cmd_vel"
+    transform_tolerance: 0.5
+    source_timeout: 5.0
+    base_shift_correction: True
+    stop_pub_timeout: 2.0
+    Enable_stamped_cmd_vel: False
+    # Polygons represent zone around the robot for "stop" and "slowdown" action types,
+    # and robot footprint for "approach" action type.
+    # Footprint could be "polygon" type with dynamically set footprint from footprint_topic
+    # or "circle" type with static footprint set by radius. "footprint_topic" parameter
+    # to be ignored in circular case.
+    polygons: ["PolygonStop", "PolygonSlow"]
+    PolygonStop:
+      type: "polygon"
+      points: [0.3, 0.25, 0.3, -0.25, 0.0, -0.25, 0.0, 0.25]
+      action_type: "stop"
+      max_points: 3
+      visualize: True
+      polygon_pub_topic: "polygon_stop"
+    PolygonSlow:
+      type: "polygon"
+      points: [0.6, 0.2, 0.6, -0.2, 0.0, -0.2, 0.0, 0.2]
+      action_type: "slowdown"
+      max_points: 3
+      slowdown_ratio: 0.3
+      linear_limit: 0.3
+      angular_limit: 0.5
+      visualize: True
+      polygon_pub_topic: "polygon_slowdown"
+    FootprintApproach:
+      type: "polygon"
+      action_type: "approach"
+      footprint_topic: "/local_costmap/published_footprint"
+      time_before_collision: 2.0
+      simulation_time_step: 0.1
+      max_points: 5
+      visualize: False
+    observation_sources: ["scan"]
+    scan:
+      type: "scan"
+      topic: "/scan_obstacle"

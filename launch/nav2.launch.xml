@@ -41,6 +41,7 @@
   <node pkg="nav2_controller" exec="controller_server" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="log_level"     value="$(var log_level)"/>
+    <remap from="/cmd_vel"      to="/cmd_vel_nav"/>
     <param from="$(var params_file)"/>
   </node>
 
@@ -59,6 +60,7 @@
   <node pkg="nav2_behaviors" exec="behavior_server" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="log_level"     value="$(var log_level)"/>
+    <remap from="/cmd_vel"      to="/cmd_vel_nav"/>
     <param from="$(var params_file)"/>
   </node>
 
@@ -77,6 +79,7 @@
   <node pkg="nav2_velocity_smoother" exec="velocity_smoother" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="log_level"     value="$(var log_level)"/>
+    <remap from="/cmd_vel"       to="/cmd_vel_nav"/>
     <param from="$(var params_file)"/>
   </node>
 
