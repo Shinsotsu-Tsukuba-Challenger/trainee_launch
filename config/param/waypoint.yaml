@@ -1,0 +1,101 @@
+waypoints:
+  - id: 1
+    position:
+      x: 109.19638061523438
+      y: -35.44220733642578
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 2
+    position:
+      x: 111.49727630615234
+      y: -53.27616882324219
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 3
+    position:
+      x: 125.23799896240234
+      y: -53.667869567871094
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 4
+    position:
+      x: 147.1306915283203
+      y: -62.502750396728516
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 5
+    position:
+      x: 160.6993865966797
+      y: -64.50098419189453
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 6
+    position:
+      x: 160.2624053955078
+      y: -134.44761657714844
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 7
+    position:
+      x: 137.40769958496094
+      y: -130.5233154296875
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 8
+    position:
+      x: 71.57971954345703
+      y: -133.81715393066406
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 9
+    position:
+      x: 55.3470344543457
+      y: -134.95204162597656
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 1.0
+  - id: 10
+    position:
+      x: 24.822750091552734
+      y: -61.96527099609375
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: restart
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0
+  - id: 11
+    position:
+      x: -4.624066352844238
+      y: -69.53016662597656
+    euler_angle:
+      z: 0.0
+    functions:
+      - function: variable_waypoint_radius
+        waypoint_radius: 3.0

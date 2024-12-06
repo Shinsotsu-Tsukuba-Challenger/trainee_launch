@@ -7,6 +7,7 @@ ament_auto_find_build_dependencies()
 
 install(PROGRAMS
   scripts/map_save.sh
+  scripts/waypoint_nav.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

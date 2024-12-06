@@ -4,6 +4,7 @@
   <arg name="map_path"          default="$(find-pkg-share trainee_launch)/config/map/$(var map_name).yaml"/>
   <arg name="keepout_map_name"  default="keepout_map"/>
   <arg name="keepout_map_path"  default="$(find-pkg-share trainee_launch)/config/map/$(var keepout_map_name).yaml"/>
+  <arg name="waypoint_path"     default="$(find-pkg-share trainee_launch)/config/param/waypoint.yaml"/>
   
   <group>
     <include file="$(find-pkg-share trainee_launch)/launch/sensing.launch.xml"/>
@@ -20,5 +21,20 @@
   <node pkg="topic_tools" exec="relay_field" output="screen" 
     args="--wait-for-start /cmd_vel /trainee/cmd_vel geometry_msgs/TwistStamped '{twist:{linear: {x: m.linear.x}, angular: {z: m.angular.z}}}'"/>
 
-  <executable cmd="ros2 topic pub --once /speak std_msgs/String '{data: &quot;ナビゲーションが立ち上がりました&quot;}'" output="screen"/>
+  <node pkg="trainee_launch" exec="waypoint_nav.py" args="--waypoint_yaml_path $(var waypoint_path)" output="screen"/>
+
+  <executable cmd="ros2 topic pub --once /speak std_msgs/String '{data: &quot;。ナビゲーションが立ち上がりました&quot;}'" output="screen"/>
+
+  <executable
+    cmd="ros2 topic pub -w 1 --once
+                    /initialpose geometry_msgs/msg/PoseWithCovarianceStamped 
+                    '{header: 
+                        {frame_id: &quot;map&quot;, stamp: 
+                        {sec: 0, nanosec: 0}}, 
+                      pose: 
+                        {pose: 
+                          {position: {x: 45.775, y: -36.053, z: 0.0}, 
+                          orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}, 
+                        covariance: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}}'"
+    output="screen"/>
 </launch>
