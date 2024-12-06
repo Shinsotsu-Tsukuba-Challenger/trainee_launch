@@ -2,8 +2,8 @@ pointcloud_to_laserscan_object_detection:
   ros__parameters:
     target_frame: laserscan_object_detection_frame
     transform_tolerance: 0.1
-    min_height: 0.1
-    max_height: 0.3
+    min_height: -0.1
+    max_height: 0.1
     angle_min: -3.1415
     angle_max: 3.1415
     angle_increment: 0.0174533

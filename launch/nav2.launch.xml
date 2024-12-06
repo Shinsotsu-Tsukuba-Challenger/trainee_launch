@@ -12,7 +12,7 @@
   <arg name="keepout_map_path"  default="$(find-pkg-share trainee_launch)/config/map/$(var keepout_map).yaml"/>
   <arg name="params_file"       default="$(find-pkg-share trainee_launch)/config/param/navigation2.param.yaml"/>
   <arg name ="rviz_config"      default="$(find-pkg-share trainee_launch)/config/rviz/navigation2.rviz"/>
-  <arg name="lifecycle_nodes"   default="['map_server', 'filter_mask_server','costmap_filter_info_server'  , 'amcl', 'controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother']"/>
+  <arg name="lifecycle_nodes"   default="['map_server', 'filter_mask_server','costmap_filter_info_server'  , 'amcl', 'controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother', 'collision_monitor']"/>
 
   <node pkg="nav2_map_server" exec="map_server" output="screen" respawn="$(var use_respawn)">
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
@@ -80,6 +80,12 @@
     <param name="use_sim_time"  value="$(var use_sim_time)"/>
     <param name="log_level"     value="$(var log_level)"/>
     <remap from="/cmd_vel"       to="/cmd_vel_nav"/>
+    <param from="$(var params_file)"/>
+  </node>
+
+  <node pkg="nav2_collision_monitor" exec="collision_monitor" output="screen" respawn="$(var use_respawn)">
+    <param name="use_sim_time"  value="$(var use_sim_time)"/>
+    <param name="log_level"     value="$(var log_level)"/>
     <param from="$(var params_file)"/>
   </node>
 
